@@ -17,6 +17,36 @@
       </ul>
     </nav>
   </header>
+    <div class="calculator-container card shadow-xl bg-base-200 border-primary border-2" id="calculator">
+    <h2 class="calculator-title text-primary text-2xl font-bold mb-4 uppercase tracking-widest">Calculatrice</h2>
+    <input type="text" id="display" class="calculator-display input input-bordered input-primary w-full mb-4 text-right text-2xl font-mono" readonly>
+    <div class="calculator-grid grid grid-cols-4 gap-2 w-full">
+        <button onclick="clearDisplay()" class="calc-button btn btn-error text-white font-bold">C</button>
+        <button onclick="backspace()" class="calc-button operator-button btn btn-primary text-white">←</button>
+        <button onclick="appendValue('/')" class="calc-button operator-button btn btn-primary text-white">÷</button>
+        <button onclick="appendValue('*')" class="calc-button operator-button btn btn-primary text-white">×</button>
+
+        <button onclick="appendValue('7')" class="calc-button btn btn-ghost">7</button>
+        <button onclick="appendValue('8')" class="calc-button btn btn-ghost">8</button>
+        <button onclick="appendValue('9')" class="calc-button btn btn-ghost">9</button>
+        <button onclick="appendValue('-')" class="calc-button operator-button btn btn-primary text-white">-</button>
+
+        <button onclick="appendValue('4')" class="calc-button btn btn-ghost">4</button>
+        <button onclick="appendValue('5')" class="calc-button btn btn-ghost">5</button>
+        <button onclick="appendValue('6')" class="calc-button btn btn-ghost">6</button>
+        <button onclick="appendValue('+')" class="calc-button operator-button btn btn-primary text-white">+</button>
+
+        <button onclick="appendValue('1')" class="calc-button btn btn-ghost">1</button>
+        <button onclick="appendValue('2')" class="calc-button btn btn-ghost">2</button>
+        <button onclick="appendValue('3')" class="calc-button btn btn-ghost">3</button>
+        <button onclick="calculateResult()" class="calc-button operator-button btn btn-primary text-white">=</button>
+
+        <button onclick="appendValue('0')" class="calc-button btn btn-ghost col-span-2">0</button>
+        <button onclick="appendValue('.')" class="calc-button btn btn-ghost">.</button>
+    </div>
+    <button onclick="hideCalculator()" style="margin-top: 10px; width: 100%;" class="calc-button btn btn-outline btn-wide mt-4">Retour</button>
+  </div>
+  <div class="calculator-overlay" id="calculatorOverlay"></div>
   <footer class="license text-xs text-base-content py-2" style="background:transparent;">
   </footer>
   <script src="./src/main.js"></script>
