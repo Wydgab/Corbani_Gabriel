@@ -58,6 +58,23 @@
     <img src="./images/image7.png" class="image" id="img7" />
     <img src="./images/image8.jpg" class="image" id="img8" />
   </div>
+  <div class="overlay" id="overlay"></div>
+  <div class="quiz-container card bg-base-200 border-primary border-2 shadow-xl" id="quizContainer">
+    <div class="progress-tree" id="progressTree"></div>
+    <h2 class="text-primary text-2xl font-bold mb-4 uppercase tracking-widest">Questionnaire d'accès au formulaire de contact</h2>
+    <div id="questionContainer" class="question-container">
+    </div>
+    <button onclick="startBruteforce()" class="bruteforce-btn btn btn-wide btn-primary uppercase tracking-wider shadow-lg">BRUTEFORCE ACCESS</button>
+    <div id="contactForm" class="contact-form bg-base-100 border-primary border-2 rounded-lg p-6 mt-4">
+        <h3 class="text-primary text-xl font-bold mb-4 uppercase tracking-widest">Accès Débloqué - Contact</h3>
+        <input type="text" placeholder="Nom" required class="input input-bordered input-primary w-full mb-2">
+        <input type="email" placeholder="Email" required class="input input-bordered input-primary w-full mb-2">
+        <textarea placeholder="Message" class="textarea textarea-bordered textarea-primary w-full mb-2"></textarea>
+        <button onclick="submitForm()" class="calc-button btn btn-success btn-wide mt-2">Envoyer</button>
+    </div>
+    <button onclick="hideQuiz()" style="margin-top: 20px; width: 100%;" class="calc-button btn btn-outline btn-wide mt-4">Retour</button>
+  </div>
+  <div class="quiz-overlay" id="quizOverlay"></div>
   <div class="project-container" id="projectContainer">
     <div class="project-section bg-base-200 bg-opacity-80 rounded-xl shadow-lg p-8 mb-8" data-section="intro">
         <div class="project-content">
