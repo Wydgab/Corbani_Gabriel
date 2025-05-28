@@ -20,3 +20,472 @@ html::-webkit-scrollbar,
 body::-webkit-scrollbar {
     display: none; /* Chrome, Safari and Opera */
 }
+.image {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+  transform-style: preserve-3d;
+  perspective: 2000px;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 0;
+  opacity: 1;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 40px;
+  z-index: 1000;
+  background: transparent;
+}
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 40px;
+  justify-content: flex-end;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1em;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 8px 0;
+  opacity: 0.8;
+  @apply hover:text-primary transition-colors duration-200;
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ff0000;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.navbar a:hover {
+  opacity: 1;
+  color: #ff0000;
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+}
+.navbar a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.navbar a.active {
+  color: #ff0000;
+  opacity: 1;
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+  @apply text-primary font-bold;
+}
+.navbar a.active::after {
+  transform: scaleX(1);
+}
+.license {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    color: #aaa;
+    font-size: 0.8rem;
+    font-family: sans-serif;
+    z-index: 20000;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    @apply text-xs text-base-content bg-base-100 bg-opacity-80 py-2;
+    background: transparent !important;
+}
+
+.quiz-container.active ~ .license,
+.quiz-overlay.active ~ .license,
+#overlay.active ~ .license,
+.project-container.active ~ .license {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('./images/image8.jpg') center center / cover no-repeat !important;
+  z-index: -1000; /* tout en dessous */
+  pointer-events: none;
+  opacity: 1;
+}
+.calculator-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255,0,0,0.2);
+  z-index: 10001;
+  border: 1px solid #ff0000;
+  @apply bg-base-200 shadow-xl border border-primary rounded-xl p-8 flex flex-col items-center gap-4;
+}
+
+.calculator-display {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 15px;
+  font-size: 28px;
+  text-align: right;
+  padding: 10px;
+  background: #000000;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+  border-radius: 8px;
+  font-family: 'Digital-7', monospace;
+  text-shadow: 0 0 5px rgba(255,0,0,0.5);
+  @apply bg-base-100 text-primary-content border border-primary rounded-lg mb-4 p-4 text-right text-2xl font-mono;
+}
+.calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  @apply grid grid-cols-4 gap-2 w-full;
+}
+.calc-button {
+  padding: 15px;
+  font-size: 20px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-shadow: 0 0 2px rgba(255,255,255,0.5);
+  box-shadow: inset 0 0 3px rgba(255,0,0,0.3);
+  @apply btn btn-md btn-ghost text-lg font-semibold rounded-lg transition-all;
+}
+.calc-button:hover {
+  background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(255,0,0,0.3);
+}
+.operator-button {
+  background: linear-gradient(145deg, #ff0000, #cc0000);
+  color: white;
+  @apply btn-primary text-white;
+}
+.operator-button:hover {
+  background: linear-gradient(145deg, #cc0000, #ff0000);
+}
+.clear-button {
+  background: linear-gradient(145deg, #990000, #660000);
+  color: white;
+  @apply btn-error text-white font-bold;
+}
+
+.calculator-title {
+  font-family: 'Orbitron', sans-serif;
+  color: #ff0000;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(255,0,0,0.5);
+  @apply text-primary text-2xl font-bold mb-4 uppercase tracking-widest;
+}
+.main-content.hidden {
+  display: none;
+}
+
+.calculator-container.active {
+  display: block !important;
+}
+.quiz-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+  padding: 25px;
+  border-radius: 15px;
+  color: white;
+  width: 80%;
+  max-width: 600px;
+  z-index: 10002;
+  box-shadow: 0 0 20px rgba(255,0,0,0.2);
+  border: 1px solid #ff0000;
+  min-height: 400px;
+}
+.quiz-container.active {
+    display: flex;
+    flex-direction: column;
+}
+#contactForm {
+    display: none;
+}
+#contactForm.active {
+    display: block;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    z-index: 10001;
+}
+
+.overlay.active {
+    display: block;
+}
+
+.quiz-container h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #ff0000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255,0,0,0.5);
+    text-align: center;
+}
+
+.bruteforce-btn {
+    background: linear-gradient(145deg, #ff0000, #cc0000);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    width: 100%;
+    transition: all 0.2s ease;
+    @apply btn btn-wide btn-primary uppercase tracking-wider shadow-lg;
+}
+
+.bruteforce-btn:hover {
+    background: linear-gradient(145deg, #cc0000, #ff0000);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(255,0,0,0.3);
+}
+
+.terminal-text {
+    font-family: 'Courier New', monospace;
+    color: #0f0;
+    margin: 10px 0;
+    font-size: 14px;
+    white-space: pre-line;
+    height: 100px;
+    overflow-y: auto;
+    background: #000;
+    padding: 10px;
+    border-radius: 5px;
+}
+.contact-form {
+    background: linear-gradient(145deg, #333333, #111111);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ff0000;
+}
+
+.contact-form h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #ff0000;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255,0,0,0.3);
+}
+.contact-form input, .contact-form textarea {
+    background: #000;
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-family: 'Orbitron', sans-serif;
+    transition: all 0.3s ease;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(255,0,0,0.3);
+}
+.progress-bar {
+    background: linear-gradient(90deg, #ff0000, #cc0000);
+    box-shadow: 0 0 10px rgba(255,0,0,0.3);
+}
+.hack-status {
+    color: #ff0000;
+    font-family: 'Orbitron', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(255,0,0,0.5);
+}
+
+@keyframes glitch {
+    0% { transform: translate(0) }
+    20% { transform: translate(-2px, 2px) }
+    40% { transform: translate(-2px, -2px) }
+    60% { transform: translate(2px, 2px) }
+    80% { transform: translate(2px, -2px) }
+    100% { transform: translate(0) }
+}
+
+.glitch {
+    animation: glitch 0.2s linear infinite;
+}
+.terminal-text {
+    font-family: 'Courier New', monospace;
+    color: #0f0;
+    margin: 10px 0;
+    font-size: 14px;
+    white-space: pre-line;
+    height: 100px;
+    overflow-y: auto;
+    background: #000;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.calculator-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(5px);
+        z-index: 10000;
+    }
+    .calculator-overlay.active {
+        display: block;
+    }
+    .quiz-overlay {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background: rgba(0, 0, 0, 0.85);
+backdrop-filter: blur(5px);
+z-index: 9999;
+}
+
+.quiz-overlay.active {
+display: block;
+}
+
+.quiz-container {
+z-index: 10001;
+min-height: 400px;
+display: none;
+}
+.quiz-tree {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.question-container {
+    margin: 30px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.question-container.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.question-title {
+    font-family: 'Orbitron', sans-serif;
+    color: #ff0000;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    text-shadow: 0 0 5px rgba(255,0,0,0.3);
+}
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+.option-button {
+    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-button:hover {
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(255,0,0,0.3);
+}
+
+.progress-tree {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 60%;
+    background: #333;
+}
+.tree-node {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff0000;
+    border-radius: 50%;
+    left: -4px;
+    transform: scale(0);
+    transition: transform 0.3s ease;
+}
+.tree-node.active {
+    transform: scale(1);
+}
+.tree-line {
+    position: absolute;
+    width: 2px;
+    background: #ff0000;
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.tree-line.active {
+    transform: scaleY(1);
+}
