@@ -19,3 +19,7 @@ function hideCalculator() {
   document.getElementById('calculatorOverlay').classList.remove('active');
   document.getElementById('mainContent').classList.remove('hidden');
 }
+function hideProject() {
+document.getElementById('projectContainer').classList.remove('active');
+document.getElementById('mainContent').classList.remove('hidden');
+}
