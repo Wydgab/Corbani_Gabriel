@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact - AutoPassion</title>
+  <link rel="stylesheet" href="./src/style.css">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      min-width: 100vw;
+      background: linear-gradient(135deg, #111 60%, #ff0000 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .motorsport-card {
+      background: #181818;
+      border: 2px solid #ff0000;
+      border-radius: 1.5rem;
+      box-shadow: 0 0 32px 0 #ff000055, 0 2px 16px #000;
+      padding: 2.5rem 2rem 2rem 2rem;
+      max-width: 430px;
+      width: 100%;
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .motorsport-title {
+      color: #ff0000;
+      font-family: 'Orbitron', 'Rajdhani', Arial, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 12px #ff000088;
+      text-align: center;
+    }
+    .motorsport-label {
+      color: #ff0000;
+      font-family: 'Orbitron', 'Rajdhani', Arial, sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+    }
+    .motorsport-input, .motorsport-textarea {
+      background: #111;
+      color: #ff0000;
+      border: 1.5px solid #ff0000;
+      border-radius: 0.5rem;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      font-family: 'Space Grotesk', Arial, sans-serif;
+      transition: border 0.2s;
+      width: 100%;
+      outline: none;
+      display: block;
+    }
+    .motorsport-input:focus, .motorsport-textarea:focus {
+      border: 2px solid #ff0000;
+      background: #181818;
+    }
+    .motorsport-btn {
+      background: linear-gradient(90deg, #ff0000 60%, #b30000 100%);
+      color: #fff;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      border: none;
+      border-radius: 0.7rem;
+      padding: 0.9rem 0;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+      width: 100%;
+      box-shadow: 0 0 10px #ff000055;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      display: block;
+    }
+    .motorsport-btn:hover {
+      background: linear-gradient(90deg, #b30000 60%, #ff0000 100%);
+      color: #fff;
+    }
+    .motorsport-link {
+      margin-top: 2rem;
+      color: #ff0000;
+      font-family: 'Orbitron', Arial, sans-serif;
+      text-align: center;
+      display: block;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .motorsport-link:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+    @media (max-width: 500px) {
+      .motorsport-card {
+        padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+        max-width: 98vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="motorsport-card">
+    <h2 class="motorsport-title">Contact</h2>
+    <form
+      action="mailto:tonadresse@email.com"
+      method="POST"
+      enctype="text/plain"
+      class="w-full flex flex-col items-center"
+    >
+      <label class="motorsport-label" for="nom">Nom</label>
+      <input type="text" id="nom" name="Nom" placeholder="Votre nom" required class="motorsport-input" />
+
+      <label class="motorsport-label" for="email">Email</label>
+      <input type="email" id="email" name="Email" placeholder="Votre email" required class="motorsport-input" />
+
+      <label class="motorsport-label" for="message">Message</label>
+      <textarea id="message" name="Message" placeholder="Votre message" required class="motorsport-textarea" rows="5"></textarea>
+
+      <button type="submit" class="motorsport-btn">Envoyer</button>
+    </form>
+    <a href="index.html" class="motorsport-link">Retour à l'accueil</a>
+  </div>
+</body>
+</html>
